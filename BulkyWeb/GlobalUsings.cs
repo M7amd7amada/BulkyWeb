@@ -5,6 +5,7 @@ global using Microsoft.EntityFrameworkCore;
 #endregion
 
 #region SystemNamespaces
+global using System.ComponentModel;
 global using System.ComponentModel.DataAnnotations;
 #endregion
 

@@ -11,11 +11,23 @@ public class CategoryController : Controller
     
     public IActionResult Index()
     {
-        return View(_dbContext.Categories);
+        return View(_dbContext.Categories?.OrderBy(c => c.DisplayOrder));
     }
 
     public IActionResult Create()
     {
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult Create(Category category)
+    {
+        if (_dbContext.Categories is not null && ModelState.IsValid)
+        {
+            _dbContext.Categories.Add(category);
+            _dbContext.SaveChanges();
+        }
+
+        return RedirectToAction("Index");
     }
 }
