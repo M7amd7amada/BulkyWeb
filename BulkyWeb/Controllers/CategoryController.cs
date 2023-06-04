@@ -54,11 +54,7 @@ public class CategoryController : Controller
     {
         if (_dbContext.Categories is not null && ModelState.IsValid)
         {
-            var updatedCategory = new Category() {
-                CategoryId = category.CategoryId,
-                Name = category.Name,
-                DisplayOrder = category.DisplayOrder
-            };
+            _dbContext.Categories.Update(category);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
