@@ -10,7 +10,7 @@ public class Category
     [DisplayName("Category Name")]
     public string Name { get; set; } = string.Empty;
 
-    [Range(1, 100)]
+    [Range(1, 100, ErrorMessage = "The order should be between 1 - 100")]
     [DisplayName("Display Order")]
     public int DisplayOrder { get; set; } 
 }
