@@ -4,23 +4,23 @@
     <input asp-for="CategoryId" hidden>
     <div class="border pt-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Update Category</h2>
+            <h2 class="text-primary">Delete Category</h2>
             <hr />
         </div>
         <div asp-validation-summary="All"></div>
         <div class="mb-3 row p-1">
             <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control">
+            <input asp-for="Name" class="form-control" disabled>
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="mb-3 row p-1">
             <label asp-for="DisplayOrder"></label>
-            <input asp-for="DisplayOrder" class="form-control">
+            <input asp-for="DisplayOrder" class="form-control" disabled>
             <span asp-validation-for="DisplayOrder" class="text-danger"></span>
         </div>
         <div class="row">
             <div class="col-6 col-md-3">
-                <button type="submit" class="btn btn-primary form-control">Update</button>
+                <button type="submit" class="btn btn-danger form-control">Delete</button>
             </div>
             <div class="col-6 col-md-3">
                 <a asp-controller="Category" asp-action="Index" class="btn btn-secondary form-control">Back</a>
