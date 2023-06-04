@@ -1,4 +1,6 @@
 #region MicrosoftNamespaces
+global using Microsoft.AspNetCore;
+global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore; 
 #endregion
 
@@ -8,4 +10,5 @@ global using System.ComponentModel.DataAnnotations;
 
 #region  ApplicationNamespaces
 global using BulkyWeb.Models;
+global using BulkyWeb.Data;
 #endregion
