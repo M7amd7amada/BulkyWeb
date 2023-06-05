@@ -2,17 +2,17 @@ namespace BulkyWeb.Controllers;
 
 public class CategoryController : Controller
 {
-    private readonly AppDbContext _dbContext;
+    private readonly ICategoryRepository _repository;
 
-    public CategoryController(AppDbContext dbContext)
+    public CategoryController(ICategoryRepository repository)
     {
-        _dbContext = dbContext;
+        _repository = repository;
     }
 
     [HttpGet]
     public IActionResult Index()
     {
-        return View(_dbContext.Categories?.OrderBy(c => c.DisplayOrder));
+        return View(_repository.GetAll().OrderBy(c => c.DisplayOrder));
     }
 
     [HttpGet]
@@ -23,15 +23,10 @@ public class CategoryController : Controller
     [HttpPost]
     public IActionResult Create(Category category)
     {
-        if (category.Name == category.DisplayOrder.ToString())
+        if (ModelState.IsValid)
         {
-            ModelState.AddModelError("Name", "They Should Not Be The Same");
-        }
-
-        if (_dbContext.Categories is not null && ModelState.IsValid)
-        {
-            _dbContext.Categories.Add(category);
-            _dbContext.SaveChanges();
+            _repository.GetAll().Add(category);
+            _repository.Save();
             TempData["success"] = "Created Done";
             return RedirectToAction("Index");
         }
@@ -41,9 +36,9 @@ public class CategoryController : Controller
     [HttpGet]
     public IActionResult Update(int? id)
     {
-        if (id is not null && _dbContext.Categories is not null)
+        if (id is not null)
         {
-            var category = _dbContext.Categories.Find(id);
+            var category = _repository.Get(c => c.CategoryId == id);
             if (category is null)
             {
                 return NotFound();
@@ -55,10 +50,10 @@ public class CategoryController : Controller
     [HttpPost]
     public IActionResult Update(Category category)
     {
-        if (_dbContext.Categories is not null && ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            _dbContext.Categories.Update(category);
-            _dbContext.SaveChanges();
+            _repository.Update(category);
+            _repository.Save();
             TempData["success"] = "Updated Done";
             return RedirectToAction("Index");
         }
@@ -68,27 +63,23 @@ public class CategoryController : Controller
     [HttpGet]
     public IActionResult Delete(int? id)
     {
-        if (_dbContext.Categories is not null)
-        {
-            var category = _dbContext.Categories.Find(id);
+            var category = _repository.Get(c => c.CategoryId == id);
             if (category is null)
             {
                 return NotFound();
             }
             return View(category);
-        }
-        return NotFound();
     }
     [HttpPost, ActionName("Delete")]
     public IActionResult DeletePost(int? id)
     {
-        if (_dbContext.Categories is not null && ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            var category = _dbContext.Categories.Find(id);
+            var category = _repository.Get(c => c.CategoryId == id);
             if (category is null)
                 return NotFound();
-            _dbContext.Categories.Remove(category);
-            _dbContext.SaveChanges();
+            _repository.Delete(category);
+            _repository.Save();
             TempData["success"] = "Deleted Done";
             return RedirectToAction("Index");
         }

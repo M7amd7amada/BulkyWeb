@@ -13,4 +13,6 @@ global using System.ComponentModel.DataAnnotations;
 global using Bulky.Data;
 global using Bulky.Models;
 global using Bulky.Utility;
+global using Bulky.Data.Repository.IRepository;
+global using Bulky.Data.Repository;
 #endregion
