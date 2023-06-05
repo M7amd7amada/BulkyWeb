@@ -10,6 +10,7 @@ global using System.ComponentModel.DataAnnotations;
 #endregion
 
 #region  ApplicationNamespaces
-global using BulkyWeb.Models;
-global using BulkyWeb.Data;
+global using Bulky.Data;
+global using Bulky.Models;
+global using Bulky.Utility;
 #endregion
