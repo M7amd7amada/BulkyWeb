@@ -2,17 +2,17 @@ namespace BulkyWeb.Controllers;
 
 public class CategoryController : Controller
 {
-    private readonly ICategoryRepository _repository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public CategoryController(ICategoryRepository repository)
+    public CategoryController(IUnitOfWork unitOfWork)
     {
-        _repository = repository;
+        _unitOfWork = unitOfWork;
     }
 
     [HttpGet]
     public IActionResult Index()
     {
-        return View(_repository.GetAll().OrderBy(c => c.DisplayOrder));
+        return View(_unitOfWork.CategoryRepository.GetAll().OrderBy(c => c.DisplayOrder));
     }
 
     [HttpGet]
@@ -25,8 +25,8 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            _repository.Create(category);
-            _repository.Save();
+            _unitOfWork.CategoryRepository.Create(category);
+            _unitOfWork.Save();
             TempData["success"] = "Created Done";
             return RedirectToAction("Index");
         }
@@ -38,7 +38,7 @@ public class CategoryController : Controller
     {
         if (id is not null)
         {
-            var category = _repository.Get(c => c.CategoryId == id);
+            var category = _unitOfWork.CategoryRepository.Get(c => c.CategoryId == id);
             if (category is null)
             {
                 return NotFound();
@@ -52,8 +52,8 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            _repository.Update(category);
-            _repository.Save();
+            _unitOfWork.CategoryRepository.Update(category);
+            _unitOfWork.Save();
             TempData["success"] = "Updated Done";
             return RedirectToAction("Index");
         }
@@ -63,7 +63,7 @@ public class CategoryController : Controller
     [HttpGet]
     public IActionResult Delete(int? id)
     {
-            var category = _repository.Get(c => c.CategoryId == id);
+            var category = _unitOfWork.CategoryRepository.Get(c => c.CategoryId == id);
             if (category is null)
             {
                 return NotFound();
@@ -75,11 +75,11 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            var category = _repository.Get(c => c.CategoryId == id);
+            var category = _unitOfWork.CategoryRepository.Get(c => c.CategoryId == id);
             if (category is null)
                 return NotFound();
-            _repository.Delete(category);
-            _repository.Save();
+            _unitOfWork.CategoryRepository.Delete(category);
+            _unitOfWork.Save();
             TempData["success"] = "Deleted Done";
             return RedirectToAction("Index");
         }
