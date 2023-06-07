@@ -25,7 +25,7 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            _repository.GetAll().Add(category);
+            _repository.Create(category);
             _repository.Save();
             TempData["success"] = "Created Done";
             return RedirectToAction("Index");
