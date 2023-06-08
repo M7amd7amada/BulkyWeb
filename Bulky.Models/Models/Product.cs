@@ -38,4 +38,8 @@ public class Product
     [DisplayName("Price For 100+")]
     [Column(TypeName = "decimal(8, 2)")]
     public decimal Price100 { get; set; }
+
+    public int CategoryId { get; set; } 
+    [ForeignKey("CategoryId")]
+    public Category? Category { get; set; }
 }

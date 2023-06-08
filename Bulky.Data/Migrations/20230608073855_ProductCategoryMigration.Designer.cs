@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BulkyWeb.Migrations
+namespace Bulky.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230608034129_ProductMigration")]
-    partial class ProductMigration
+    [Migration("20230608073855_ProductCategoryMigration")]
+    partial class ProductCategoryMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,6 +119,9 @@ namespace BulkyWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -144,6 +147,8 @@ namespace BulkyWeb.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
 
                     b.HasData(
@@ -151,6 +156,7 @@ namespace BulkyWeb.Migrations
                         {
                             ProductId = 1,
                             Author = "Author 1",
+                            CategoryId = 1,
                             Description = "This is product 1",
                             ISPN = "ISPN-1",
                             ListPrice = 50.00m,
@@ -163,6 +169,7 @@ namespace BulkyWeb.Migrations
                         {
                             ProductId = 2,
                             Author = "Author 2",
+                            CategoryId = 2,
                             Description = "This is product 2",
                             ISPN = "ISPN-2",
                             ListPrice = 30.00m,
@@ -175,6 +182,7 @@ namespace BulkyWeb.Migrations
                         {
                             ProductId = 3,
                             Author = "Author 3",
+                            CategoryId = 3,
                             Description = "This is product 3",
                             ISPN = "ISPN-3",
                             ListPrice = 60.00m,
@@ -187,6 +195,7 @@ namespace BulkyWeb.Migrations
                         {
                             ProductId = 4,
                             Author = "Author 4",
+                            CategoryId = 3,
                             Description = "This is product 4",
                             ISPN = "ISPN-4",
                             ListPrice = 20.00m,
@@ -199,6 +208,7 @@ namespace BulkyWeb.Migrations
                         {
                             ProductId = 5,
                             Author = "Author 5",
+                            CategoryId = 5,
                             Description = "This is product 5",
                             ISPN = "ISPN-5",
                             ListPrice = 80.00m,
@@ -207,6 +217,17 @@ namespace BulkyWeb.Migrations
                             Price50 = 70.00m,
                             Title = "Product 5"
                         });
+                });
+
+            modelBuilder.Entity("Bulky.Models.Product", b =>
+                {
+                    b.HasOne("Bulky.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

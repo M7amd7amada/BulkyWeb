@@ -1,4 +1,3 @@
-using Bulky.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bulky.Data;
@@ -37,7 +36,8 @@ public class AppDbContext : DbContext
                 ListPrice = 50.00m,
                 Price = 45.00m,
                 Price50 = 40.00m,
-                Price100 = 35.00m
+                Price100 = 35.00m,
+                CategoryId = 1
             },
             new Product
             {
@@ -49,7 +49,8 @@ public class AppDbContext : DbContext
                 ListPrice = 30.00m,
                 Price = 25.00m,
                 Price50 = 20.00m,
-                Price100 = 15.00m
+                Price100 = 15.00m,
+                CategoryId = 2
             },
             new Product
             {
@@ -61,7 +62,8 @@ public class AppDbContext : DbContext
                 ListPrice = 60.00m,
                 Price = 55.00m,
                 Price50 = 50.00m,
-                Price100 = 45.00m
+                Price100 = 45.00m,
+                CategoryId = 3
             },
             new Product
             {
@@ -73,7 +75,8 @@ public class AppDbContext : DbContext
                 ListPrice = 20.00m,
                 Price = 15.00m,
                 Price50 = 10.00m,
-                Price100 = 5.00m
+                Price100 = 5.00m,
+                CategoryId = 3
             },
             new Product
             {
@@ -85,7 +88,8 @@ public class AppDbContext : DbContext
                 ListPrice = 80.00m,
                 Price = 75.00m,
                 Price50 = 70.00m,
-                Price100 = 65.00m
+                Price100 = 65.00m,
+                CategoryId = 5
             }
         );
     }
