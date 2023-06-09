@@ -1,6 +1,7 @@
 @model Product
 
 <form method="post">
+    <input asp-for="ProductId" hidden>
     <div class="border pt-3 mt-4">
         <div class="row pb-2">
             <h2 class="text-primary">Create Product</h2>
@@ -49,10 +50,10 @@
         </div>
         <div class="row">
             <div class="col-6 col-md-3">
-                <button type="submit" class="btn btn-primary form-control">Create</button>
+                <button type="submit" class="btn btn-primary form-control">Update</button>
             </div>
             <div class="col-6 col-md-3">
-                <a asp-controller="Product" asp-area="Customer" asp-action="Index" class="btn btn-secondary form-control">Back</a>
+                <a asp-controller="Product" asp-area="Admin" asp-action="Index" class="btn btn-secondary form-control">Back</a>
             </div>
         </div>
     </div>

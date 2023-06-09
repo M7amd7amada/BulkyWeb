@@ -7,7 +7,7 @@
         </div>
 
         <div class="col-6 text-end">
-            <a class="btn btn-primary" asp-controller="Product" asp-area="Customer" asp-action="Create">
+            <a class="btn btn-primary" asp-controller="Product" asp-area="Admin" asp-action="Create">
                 <i class="bi bi-plus-circle"></i> Create New Product
             </a>
         </div>
@@ -38,13 +38,13 @@
                         <a class="btn btn-primary mx-2"
                             asp-route-id="@item.ProductId"
                             asp-controller="Product"
-                            asp-area="Customer" asp-action="Update">
+                            asp-area="Admin" asp-action="Update">
                             <i class="bi bi-pencil-square"></i> Edit
                         </a>
                         <a class="btn btn-danger mx-2"
                             asp-route-id="@item.ProductId"
                             asp-controller="Product"
-                            asp-area="Customer" asp-action="Delete">
+                            asp-area="Admin" asp-action="Delete">
                             <i class="bi bi-trash-fill"></i> Delete
                         </a>
                     </td>

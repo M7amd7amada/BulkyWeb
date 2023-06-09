@@ -1,6 +1,6 @@
 namespace BulkyWeb.Areas.Customer.Controllers;
 
-[Area("Customer")]
+[Area("Admin")]
 public class ProductController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -12,7 +12,9 @@ public class ProductController : Controller
 
     public IActionResult Index()
     {
-        return View(_unitOfWork.ProductRepository.GetAll());
+        IEnumerable<Product> productList = _unitOfWork.ProductRepository.GetAll();
+        
+        return View();
     }
 
     public IActionResult Create()

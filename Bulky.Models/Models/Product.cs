@@ -7,13 +7,13 @@ public class Product
 
     [Required]
     public string Title { get; set; } = string.Empty;
-
-    public string? Description { get; set; }
-
     [Required]
     public string ISPN { get; set; } = string.Empty;
     [Required]
     public string Author { get; set; } = string.Empty;
+
+    public string? Description { get; set; }
+    public string? ImageUrl { get; set; }
 
     [Required]
     [Range(1, 1000)]

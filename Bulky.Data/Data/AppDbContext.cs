@@ -37,7 +37,8 @@ public class AppDbContext : DbContext
                 Price = 45.00m,
                 Price50 = 40.00m,
                 Price100 = 35.00m,
-                CategoryId = 1
+                CategoryId = 1,
+                ImageUrl = null
             },
             new Product
             {
@@ -50,7 +51,8 @@ public class AppDbContext : DbContext
                 Price = 25.00m,
                 Price50 = 20.00m,
                 Price100 = 15.00m,
-                CategoryId = 2
+                CategoryId = 2,
+                ImageUrl = null
             },
             new Product
             {
@@ -63,7 +65,8 @@ public class AppDbContext : DbContext
                 Price = 55.00m,
                 Price50 = 50.00m,
                 Price100 = 45.00m,
-                CategoryId = 3
+                CategoryId = 3,
+                ImageUrl = null
             },
             new Product
             {
@@ -76,7 +79,8 @@ public class AppDbContext : DbContext
                 Price = 15.00m,
                 Price50 = 10.00m,
                 Price100 = 5.00m,
-                CategoryId = 3
+                CategoryId = 3,
+                ImageUrl = null
             },
             new Product
             {
@@ -89,7 +93,8 @@ public class AppDbContext : DbContext
                 Price = 75.00m,
                 Price50 = 70.00m,
                 Price100 = 65.00m,
-                CategoryId = 5
+                CategoryId = 5,
+                ImageUrl = null
             }
         );
     }
