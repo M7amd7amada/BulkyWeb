@@ -37,8 +37,9 @@ public class ProductController : Controller
         if (id is null || _unitOfWork.ProductRepository is null)
             return NotFound();
         
+        var product = _unitOfWork.ProductRepository.Get(p => p.ProductId == id);
 
-        return View(_unitOfWork.ProductRepository.Get(p => p.ProductId == id));
+        return View(product);
     }
     [HttpPost]
     public IActionResult Update(Product product)
